@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Daily Love</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@700&family=Orbitron:wght@500;700&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body class="dark">
+
+<!-- SPLASH -->
+
+<div id="splash">
+
+<div class="fondo-flores"></div>
+
+<div class="overlay"></div>
+
+<div class="splash-content">
+
+<div class="logo">
+🌸
+</div>
+
+<h1>
+Daily Love
+</h1>
+
+<p>
+Tu espacio especial cada día
+</p>
+
+<div class="loader">
+
+<div class="loader-fill"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FONDO -->
+
+<div class="rosas-bg"></div>
+
+<canvas id="petalos"></canvas>
+
+<!-- CONFIG -->
+
+<div class="config-panel"
+id="configPanel">
+
+<h2>
+⚙️ Configuración
+</h2>
+
+<div class="config-item">
+
+<span>
+Modo oscuro
+</span>
+
+<label class="switch">
+
+<input type="checkbox"
+id="themeToggle">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="config-item">
+
+<span>
+Tipografía
+</span>
+
+<select id="fontSelector">
+
+<option value="Poppins">
+Poppins
+</option>
+
+<option value="'Playfair Display'">
+Playfair
+</option>
+
+<option value="'Dancing Script'">
+Dancing Script
+</option>
+
+<option value="Orbitron">
+Orbitron
+</option>
+
+</select>
+
+</div>
+
+<div class="config-item">
+
+<span>
+Cambiar fondo
+</span>
+
+<input
+type="file"
+id="bgUpload"
+accept="image/*">
+
+</div>
+
+</div>
+
+<!-- APP -->
+
+<div class="app">
+
+<!-- TOP -->
+
+<div class="topbar">
+
+<div>
+
+<h1>
+Daily Love
+</h1>
+
+<p>
+Tu frase especial diaria
+</p>
+
+</div>
+
+<button
+class="config-btn"
+id="configBtn">
+
+<i class="fa-solid fa-gear"></i>
+
+</button>
+
+</div>
+
+<!-- HOME -->
+
+<div
+class="screen active"
+id="homeScreen">
+
+<div class="main-card">
+
+<div class="frase-card">
+
+<button
+class="fav-btn"
+id="favBtn">
+
+<i class="fa-regular fa-heart"></i>
+
+</button>
+
+<div id="frase"></div>
+
+<div
+class="fecha"
+id="fechaHoy"></div>
+
+</div>
+
+<div id="contador"></div>
+
+<div class="buttons">
+
+<button id="shareBtn">
+
+<i class="fa-solid fa-share"></i>
+
+Compartir
+
+</button>
+
+</div>
+
+</div>
+
+<!-- STREAK -->
+
+<div class="streak-card">
+
+<h3>
+🔥 Racha diaria
+</h3>
+
+<p>
+
+Llevas
+
+<span id="streakCount">
+0
+</span>
+
+días seguidos
+
+</p>
+
+</div>
+
+<!-- LOGROS -->
+
+<div class="achievements-card">
+
+<h3>
+🏆 Logros
+</h3>
+
+<div id="achievementsList"></div>
+
+</div>
+
+</div>
+
+<!-- FAVORITOS -->
+
+<div
+class="screen"
+id="favScreen">
+
+<h2 class="title">
+
+❤️ Favoritos y estadísticas
+
+</h2>
+
+<div class="stats-grid">
+
+<div class="stats-box">
+
+<h3 id="diasUso">
+0
+</h3>
+
+<p>
+Días
+</p>
+
+</div>
+
+<div class="stats-box">
+
+<h3 id="cantidadFavs">
+0
+</h3>
+
+<p>
+Favoritas
+</p>
+
+</div>
+
+</div>
+
+<div id="favoritosContainer"></div>
+
+</div>
+
+<!-- NOTAS -->
+
+<div
+class="screen"
+id="notesScreen">
+
+<h2 class="title">
+
+📝 Tus notas
+
+</h2>
+
+<div class="notes-card">
+
+<textarea
+id="notaInput"
+placeholder="Escribe algo bonito..."></textarea>
+
+<button
+id="guardarNota">
+
+Guardar nota
+
+</button>
+
+</div>
+
+<div id="notasGuardadas"></div>
+
+</div>
+
+<!-- NAVBAR -->
+
+<div class="navbar"
+id="navbar">
+
+<button
+class="nav-item active"
+data-screen="homeScreen">
+
+<i class="fa-solid fa-house"></i>
+
+</button>
+
+<button
+class="nav-item"
+data-screen="favScreen">
+
+<i class="fa-solid fa-heart"></i>
+
+</button>
+
+<button
+class="nav-item"
+data-screen="notesScreen">
+
+<i class="fa-solid fa-note-sticky"></i>
+
+</button>
+
+<button
+class="hide-btn"
+id="hideNav">
+
+<i class="fa-solid fa-chevron-down"></i>
+
+</button>
+
+</div>
+
+<button
+class="show-nav"
+id="showNav">
+
+<i class="fa-solid fa-chevron-up"></i>
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
