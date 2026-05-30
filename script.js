@@ -34,7 +34,7 @@ const frases = [
   "La perfección es una pulida colección de errores.",
   "Cuando creíamos tener todas las respuestas, cambiaron todas las preguntas.",
   "Cinco minutos bastan para soñar toda una vida.",
-  "Defender la alegría también es una forma de valentía."
+  "Defender la alegría también es una forma de valentía.",
 "Cada desafío es una oportunidad disfrazada.",
 "Lo imposible solo tarda un poco más.",
 "El valor de tu vida lo defines tú.",
