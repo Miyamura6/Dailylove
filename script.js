@@ -1,3 +1,4 @@
+console.log("SCRIPT CARGADO");
 const frases = [
 
   "La vida no se trata de encontrarte a ti mismo, sino de crearte a ti mismo.",
@@ -790,4 +791,84 @@ function mostrarLogros() {
     return;
   }
 
-  lo
+  logros.forEach(l => {
+
+    const div = document.createElement("div");
+
+    div.className = "fav-item";
+
+    div.textContent = l;
+
+    list.appendChild(div);
+  });
+}
+
+/* DIAS DE USO */
+
+let uso =
+  parseInt(localStorage.getItem("diasUso")) || 1;
+
+diasUso.textContent = uso;
+
+/* NOTIFICACIONES */
+
+if (
+  "Notification" in window &&
+  Notification.permission !== "denied"
+) {
+
+  Notification.requestPermission();
+}
+
+/* SPLASH */
+
+window.addEventListener("load", () => {
+
+  const splash =
+    document.getElementById("splash");
+
+  setTimeout(() => {
+
+    splash.style.opacity = "0";
+
+    document.body.classList.remove("loading");
+
+    document.body.classList.add("loaded");
+
+    setTimeout(() => {
+
+      splash.remove();
+
+    }, 800);
+
+  }, 2500);
+});
+
+/* INICIAR */
+
+cargarFrase();
+
+mostrarFavoritos();
+
+mostrarNotas();
+
+mostrarLogros();
+
+/* SERVICE WORKER */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener("load", () => {
+
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(() => {
+        console.log("Service Worker registrado");
+      })
+      .catch(err => {
+        console.log("Error SW:", err);
+      });
+
+  });
+
+}
