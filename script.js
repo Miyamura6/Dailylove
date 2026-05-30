@@ -1,4 +1,3 @@
-console.log("SCRIPT CARGADO");
 const frases = [
 
   "La vida no se trata de encontrarte a ti mismo, sino de crearte a ti mismo.",
