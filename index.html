@@ -2,376 +2,223 @@
 <html lang="es">
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8">
+  <title>Daily Love</title>
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050816" />
 
-<title>Daily Love</title>
+  <link rel="manifest" href="manifest.json" />
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@700&family=Orbitron:wght@500;700&display=swap"
-rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-/>
-
-<link rel="stylesheet"
-href="style.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="dark">
+<body class="dark loading">
 
-<!-- SPLASH -->
+  <!-- SPLASH -->
+  <div id="splash">
+    <div class="overlay"></div>
 
-<div id="splash">
-
-<div class="fondo-flores"></div>
-
-<div class="overlay"></div>
-
-<div class="splash-content">
-
-<div class="logo">
-🌸
+    <div class="splash-content">
+      <div class="logo">
+  <img src="icon-192.png" alt="logo">
 </div>
 
-<h1>
-Daily Love
-</h1>
+      <h1>Daily Love</h1>
 
-<p>
-Tu espacio especial cada día
-</p>
+      <p>Tu frase especial diaria</p>
 
-<div class="loader">
+      <div class="loader">
+        <div class="loader-fill"></div>
+      </div>
+    </div>
+  </div>
 
-<div class="loader-fill"></div>
+  <!-- FONDO -->
+  <div class="rosas-bg"></div>
 
-</div>
+  <!-- CONFIG -->
+  <div class="config-panel" id="configPanel">
 
-</div>
+    <h2>⚙️ Configuración</h2>
 
-</div>
+    <div class="config-item">
+      <span>Modo oscuro</span>
 
-<!-- FONDO -->
+      <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
 
-<div class="rosas-bg"></div>
+    <div class="config-item">
+      <span>Tipografía</span>
 
-<canvas id="petalos"></canvas>
+      <select id="fontSelector">
+        <option value="Poppins">Poppins</option>
+        <option value="serif">Serif</option>
+        <option value="monospace">Monospace</option>
+      </select>
+    </div>
 
-<!-- CONFIG -->
+    <div class="config-item">
+      <span>Cambiar fondo</span>
+      <input type="file" id="bgUpload" accept="image/*">
+    </div>
 
-<div class="config-panel"
-id="configPanel">
+  </div>
 
-<h2>
-⚙️ Configuración
-</h2>
+  <!-- APP -->
+  <div class="app">
 
-<div class="config-item">
+    <!-- TOPBAR -->
+    <div class="topbar">
 
-<span>
-Modo oscuro
-</span>
+      <div>
+        <h1>Daily Love</h1>
+        <p>Tu frase especial diaria</p>
+      </div>
 
-<label class="switch">
+      <button class="config-btn" id="configBtn">
+        <i class="fa-solid fa-gear"></i>
+      </button>
 
-<input type="checkbox"
-id="themeToggle">
+    </div>
 
-<span class="slider"></span>
+    <!-- HOME -->
+    <div class="screen active" id="homeScreen">
 
-</label>
+      <div class="main-card">
 
-</div>
+        <div class="frase-card" id="shareCard">
 
-<div class="config-item">
+          <button class="fav-btn" id="favBtn">
+            <i class="fa-regular fa-heart"></i>
+          </button>
 
-<span>
-Tipografía
-</span>
+          <div id="frase"></div>
 
-<select id="fontSelector">
+          <div class="fecha" id="fechaHoy"></div>
 
-<option value="Poppins">
-Poppins
-</option>
+        </div>
 
-<option value="'Playfair Display'">
-Playfair
-</option>
+        <div id="contador"></div>
 
-<option value="'Dancing Script'">
-Dancing Script
-</option>
+        <div class="buttons">
+          <button id="shareBtn">
+            <i class="fa-solid fa-share"></i>
+            Compartir
+          </button>
+        </div>
 
-<option value="Orbitron">
-Orbitron
-</option>
+      </div>
 
-</select>
+      <!-- STREAK -->
+      <div class="streak-card">
+        <h3>🔥 Racha diaria</h3>
 
-</div>
+        <p>
+          Llevas
+          <span id="streakCount">0</span>
+          días seguidos
+        </p>
+      </div>
 
-<div class="config-item">
+      <!-- LOGROS -->
+      <div class="achievements-card">
+        <h3>🏆 Logros</h3>
 
-<span>
-Cambiar fondo
-</span>
+        <div id="achievementsList"></div>
+      </div>
 
-<input
-type="file"
-id="bgUpload"
-accept="image/*">
+    </div>
 
-</div>
+    <!-- FAVORITOS -->
+    <div class="screen" id="favScreen">
 
-</div>
+      <h2 class="title">Favoritos</h2>
 
-<!-- APP -->
+      <div class="stats-grid">
 
-<div class="app">
+        <div class="stats-box">
+          <h3 id="diasUso">0</h3>
+          <p>Días</p>
+        </div>
 
-<!-- TOP -->
+        <div class="stats-box">
+          <h3 id="cantidadFavs">0</h3>
+          <p>Favoritas</p>
+        </div>
 
-<div class="topbar">
+      </div>
 
-<div>
+      <div id="favoritosContainer"></div>
 
-<h1>
-Daily Love
-</h1>
+    </div>
 
-<p>
-Tu frase especial diaria
-</p>
+    <!-- NOTAS -->
+    <div class="screen" id="notesScreen">
 
-</div>
+      <h2 class="title">Tus notas</h2>
 
-<button
-class="config-btn"
-id="configBtn">
+      <div class="notes-card">
 
-<i class="fa-solid fa-gear"></i>
+        <textarea id="notaInput" placeholder="Escribe algo bonito..."></textarea>
 
-</button>
+        <button id="guardarNota">
+          Guardar nota
+        </button>
 
-</div>
+      </div>
 
-<!-- HOME -->
+      <div id="notasGuardadas"></div>
 
-<div
-class="screen active"
-id="homeScreen">
+    </div>
 
-<div class="main-card">
+    <!-- HISTORIAL -->
+    <div class="screen" id="historyScreen">
 
-<div class="frase-card">
+      <h2 class="title">Historial</h2>
 
-<button
-class="fav-btn"
-id="favBtn">
+      <div id="historialContainer"></div>
 
-<i class="fa-regular fa-heart"></i>
+    </div>
 
-</button>
+  </div>
 
-<div id="frase"></div>
+  <!-- NAVBAR -->
+  <div class="navbar" id="navbar">
 
-<div
-class="fecha"
-id="fechaHoy"></div>
+    <button class="nav-item active" data-screen="homeScreen">
+      <i class="fa-solid fa-house"></i>
+    </button>
 
-</div>
+    <button class="nav-item" data-screen="favScreen">
+      <i class="fa-solid fa-heart"></i>
+    </button>
 
-<div id="contador"></div>
+    <button class="nav-item" data-screen="notesScreen">
+      <i class="fa-solid fa-note-sticky"></i>
+    </button>
 
-<div class="buttons">
+    <button class="nav-item" data-screen="historyScreen">
+      <i class="fa-solid fa-clock-rotate-left"></i>
+    </button>
 
-<button id="shareBtn">
+  </div>
 
-<i class="fa-solid fa-share"></i>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-Compartir
-
-</button>
-
-</div>
-
-</div>
-
-<!-- STREAK -->
-
-<div class="streak-card">
-
-<h3>
-🔥 Racha diaria
-</h3>
-
-<p>
-
-Llevas
-
-<span id="streakCount">
-0
-</span>
-
-días seguidos
-
-</p>
-
-</div>
-
-<!-- LOGROS -->
-
-<div class="achievements-card">
-
-<h3>
-🏆 Logros
-</h3>
-
-<div id="achievementsList"></div>
-
-</div>
-
-</div>
-
-<!-- FAVORITOS -->
-
-<div
-class="screen"
-id="favScreen">
-
-<h2 class="title">
-
-❤️ Favoritos y estadísticas
-
-</h2>
-
-<div class="stats-grid">
-
-<div class="stats-box">
-
-<h3 id="diasUso">
-0
-</h3>
-
-<p>
-Días
-</p>
-
-</div>
-
-<div class="stats-box">
-
-<h3 id="cantidadFavs">
-0
-</h3>
-
-<p>
-Favoritas
-</p>
-
-</div>
-
-</div>
-
-<div id="favoritosContainer"></div>
-
-</div>
-
-<!-- NOTAS -->
-
-<div
-class="screen"
-id="notesScreen">
-
-<h2 class="title">
-
-📝 Tus notas
-
-</h2>
-
-<div class="notes-card">
-
-<textarea
-id="notaInput"
-placeholder="Escribe algo bonito..."></textarea>
-
-<button
-id="guardarNota">
-
-Guardar nota
-
-</button>
-
-</div>
-
-<div id="notasGuardadas"></div>
-
-</div>
-
-<!-- NAVBAR -->
-
-<div class="navbar"
-id="navbar">
-
-<button
-class="nav-item active"
-data-screen="homeScreen">
-
-<i class="fa-solid fa-house"></i>
-
-</button>
-
-<button
-class="nav-item"
-data-screen="favScreen">
-
-<i class="fa-solid fa-heart"></i>
-
-</button>
-
-<button
-class="nav-item"
-data-screen="notesScreen">
-
-<i class="fa-solid fa-note-sticky"></i>
-
-</button>
-
-<button
-class="hide-btn"
-id="hideNav">
-
-<i class="fa-solid fa-chevron-down"></i>
-
-</button>
-
-</div>
-
-<button
-class="show-nav"
-id="showNav">
-
-<i class="fa-solid fa-chevron-up"></i>
-
-</button>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 
 </body>
+
 </html>
